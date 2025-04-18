@@ -1,0 +1,233 @@
+body,html {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.header-container{
+    width:100%;
+    height: auto;
+    background: linear-gradient(to left,rgb(76, 0, 255),rgb(38, 2, 114));
+    padding: 20px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.title-count{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+.title-count h1{
+    font-size: 40px;
+    color: #fff;
+    margin: 0;
+}
+
+.title-count p{
+    color: #fff;
+    margin: 0;
+}
+
+.form-tambah{
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+    color: white;
+}
+
+.form-tambah input{
+    width: 100px;
+    height: 12px;
+    flex: 1;
+    margin: 0 16px;
+    font-family: 'Poppins';
+    padding: 12px;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 30px;
+}
+
+.custom-file-upload {
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    color: black;
+    font-size: 14px;
+    margin: 0 16px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.form-tambah button{
+    width: 120px;
+    height: 40px;
+    font-family: 'Poppins';
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-weight: 800;
+    background-color: rgb(255, 115, 0);
+}
+
+.form-tambah button:hover{
+    background-color: rgb(212, 81, 0);
+}
+
+.container-parent{
+    margin: 40px 80px;   
+}
+
+.under-parent{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 8px 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 320px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.product h2 {
+    font-size: 24px;
+    margin: 15px 0 10px;
+    color: #222;
+}
+
+.product p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555;
+}
+
+.product p:last-child {
+    font-weight: bold;
+    color: #e67e22;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.remove-button button{
+    width: 60px;
+    height: 24px;
+    border: none;
+    background-color: red;
+    color: #fff;
+    border-radius: 12px;
+}
+
+.remove-button button:hover{
+    background-color: rgb(190, 0, 0);
+}
+
+.sort-button{
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+}
+.sort-button button{
+    width: 140px;
+    height: 50px;
+    border: none;
+    background-color: rgb(0, 140, 255);
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    font-size: 12px ;
+}
+
+.sort-button button:hover{
+    background-color: rgb(233, 237, 240);
+    color: rgb(0, 140, 255);
+}
+
+.sort-name button{
+    border-radius: 30px 0 0 30px;
+}
+
+.sort-price button{
+    border-radius: 0 30px 30px 0;
+}
+
+.edit-button button{
+    width: 60px;
+    height: 24px;
+    border: none;
+    background-color: rgb(0, 140, 255);
+    color: #fff;
+    border-radius: 12px;
+}
+
+.edit-button button:hover{
+    background-color: rgb(0, 81, 202);
+}
+
+footer{
+    background-color: #252949;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(73, 75, 101);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 90px;
+}
+
+footer h3, footer p{
+    margin: 0;
+    /* opacity: 30%; */
+
+}
