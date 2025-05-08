@@ -2,14 +2,18 @@
 session_start();
 include 'classes/Product.php';
 
-if (isset($_GET['reset'])) {
+if (!isset($_SESSION['username'])) {
+    header("Location: auth/login.php");
+    exit();
+}
+
+if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: index.php");
+    header("Location: auth/login.php");
     exit();
 }
 
 $productsObj = new Product();
-//haloooo
 
 if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
     $index = (int) $_GET['remove'];
@@ -25,6 +29,19 @@ $products = $productsObj->getProducts($sortBy);
 // $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'price';
 // $products = $products->getProducts($sortBy);
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['themeToggle'])) {
+        setcookie('theme', 'dark', time() + (86400 * 30), "/"); 
+    } else {
+        setcookie('theme', 'light', time() + (86400 * 30), "/");
+    }
+    header("Location: " . $_SERVER['PHP_SELF']); 
+    exit;
+}
+
+$theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
+
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +54,17 @@ $products = $productsObj->getProducts($sortBy);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body class="<?= $theme ?>">
 <div class="header-container">
     <div class="title-count">
         <h1>POKETCG</h1>
         <p>#1 POKEMON TCG STORE</p>
+        <p>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
+        <a href="index.php?logout=true" class="logout-link">Logout</a>
+    </p>
     </div>
     <div class="form-tambah">
         <form action="insert.php" method="POST" enctype="multipart/form-data">
@@ -71,6 +93,12 @@ $products = $productsObj->getProducts($sortBy);
     <div class="under-parent">
         <p>Total Cards In Stock: <strong><?= $productsObj->countProducts(); ?></strong></p>
         <div class="sort-button">
+            <form method="POST" id="themeForm">
+                <label class="switch">
+                    <input type="checkbox" name="themeToggle" onchange="document.getElementById('themeForm').submit();" <?= (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? 'checked' : '' ?>>
+                    <span class="slider round"></span>
+                </label>
+            </form>
             <a href="index.php?sort=name" class="sort-name">
                 <button>Sort by Name (A-Z)</button>
             </a>
@@ -79,12 +107,17 @@ $products = $productsObj->getProducts($sortBy);
             </a>
         </div>
     </div>
-
     <div class="container">
+        <div class="search-container">
+            <div class="search-icon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <input type="input" id="search-item" placeholder="Cari barang">
+        </div>
         <div class="product-list">
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $index => $product): ?>
-                    <div class="product">
+                    <div class="product" data-name="<?= strtolower($product['name']); ?>">
                         <img src="uploads/<?= htmlspecialchars($product['image']); ?>" alt="">
                         <h2><?= htmlspecialchars($product['name']); ?></h2>
                         <p><?= htmlspecialchars($product['card_desc']); ?></p>
@@ -114,4 +147,5 @@ $products = $productsObj->getProducts($sortBy);
     <h3>Proyek dibuat untuk UTS Pemrograman Web II</h3>
     <p>Muhammad Suheil Ichma Putra_09021382328142</p>
 </footer>
+<script src="js/jQuery.js"></script>
 </html>
