@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 27, 2025 at 10:29 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Host: localhost:3306
+-- Generation Time: May 09, 2025 at 12:30 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `original_image` varchar(255) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `card_desc` text NOT NULL,
-  `price` int(11) NOT NULL
+  `id` int NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `original_image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `card_desc` text COLLATE utf8mb4_general_ci NOT NULL,
+  `price` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -51,6 +51,27 @@ INSERT INTO `products` (`id`, `image`, `original_image`, `name`, `card_desc`, `p
 (28, 'c4c809c7fe18c129f9dd9ab3f640fd5033642a008967a7271c5690d81a461767.jpg', NULL, 'Greninja ex - 214/167 - SV06: Twilight Masquerade (TWM)', 'Card Number / Rarity:214/167 / Special Illustration Rare', 382),
 (29, '22e08c471c82e979374d7ff5513ec91709e5127b1f5a0d9abe370e2a0b482c42.jpg', NULL, 'Mewtwo VSTAR - Crown Zenith: Galarian Gallery (CRZ:GG)', 'Card Number / Rarity:GG44/GG70 / Ultra Rare', 148);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_at`) VALUES
+(1, 'Sumhel', '$2y$10$.FFNJpKjnWPeqDYVSdyl2OhT.vzd3Bpa9/kvyEdG.G9xcswxwGe5e', 'suheilputra@gmail.com', '2025-05-09 11:16:56');
+
 --
 -- Indexes for dumped tables
 --
@@ -62,6 +83,14 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -69,7 +98,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

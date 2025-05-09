@@ -66,6 +66,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
         <a href="index.php?logout=true" class="logout-link">Logout</a>
     </p>
     </div>
+    <?php if ($_SESSION['role'] === 'admin'): ?>
     <div class="form-tambah">
         <form action="insert.php" method="POST" enctype="multipart/form-data">
             <label>Name</label>
@@ -80,6 +81,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
             <button type="submit">Add Product</button>
         </form>
     </div>
+    <?php endif; ?>
+
 </div>
 <script>
     function updateFileName(input) {
@@ -123,6 +126,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                         <p><?= htmlspecialchars($product['card_desc']); ?></p>
                         <p>Price Range: <strong>$<?= htmlspecialchars($product['price']); ?></strong></p>
                         <div class="buttons">
+                        <?php if ($_SESSION['role'] === 'admin'): ?>
                             <div class="edit-button">
                                 <a href="edit.php?id=<?= $product['id']; ?>" class="edit-button">
                                     <button>edit</button>
@@ -133,7 +137,15 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                                     <button>remove</button>
                                 </a>
                             </div>
-                        </div>
+                        <?php else: ?>
+                            <div class="buy-button">
+                                <a href="buy.php?id=<?= $product['id']; ?>">
+                                    <button>Beli</button>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>

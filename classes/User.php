@@ -8,6 +8,7 @@ class User {
     private $email;
     private $password;
     private $created_at;
+    private $role;
 
     // Constructor with database connection
     public function __construct($db = null) {
@@ -67,7 +68,7 @@ class User {
         $this->username = htmlspecialchars(strip_tags($username));
         
         // Query to check if username exists
-        $query = "SELECT id, username, email, password, created_at FROM users WHERE username = ?";
+        $query = "SELECT id, username, email, password, created_at, role FROM users WHERE username = ?";
         $stmt = $this->conn->prepare($query);
         
         // Bind parameters
@@ -88,6 +89,7 @@ class User {
                 $this->username = $user['username'];
                 $this->email = $user['email'];
                 $this->created_at = $user['created_at'];
+                $this->role = $user['role'];
                 
                 return true;
             }
@@ -137,5 +139,9 @@ class User {
     public function getCreatedAt() {
         return $this->created_at;
     }
+    public function getRole() {
+    return $this->role;
+    }
 }
+    
 ?>
