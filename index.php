@@ -53,6 +53,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <link rel="stylesheet" href="styles/styleIndex.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="assets/logoPoke.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/6ed949fe3b.js" crossorigin="anonymous"></script>
@@ -71,6 +72,12 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     </p>
     </div>
     <div class="right-header">
+        <form method="POST" id="themeForm">
+            <label class="switch">
+                <input type="checkbox" name="themeToggle" onchange="document.getElementById('themeForm').submit();" <?= (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? 'checked' : '' ?>>
+                <span class="slider round"></span>
+            </label>
+        </form>
         <p>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
         <a href="index.php?logout=true" class="logout-link">Logout</a>
         <?php if ($_SESSION['role'] === 'admin'): ?>
@@ -132,11 +139,8 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     </div>
 </div>
 <div class="container-parent">
-    <div class="under-parent">
-        <p>Total Cards In Stock: <strong><?= $productsObj->countProducts(); ?></strong></p>
-    </div>
     <div class="container">
-        <div class="product-list">
+        <div class="search-and-sort">
             <div class="search-container">
                 <div class="search-icon">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -144,20 +148,22 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                 <input type="input" id="search-item" placeholder="Cari barang">
             </div>
             <div class="sort-button">
-            <form method="POST" id="themeForm">
-                <label class="switch">
-                    <input type="checkbox" name="themeToggle" onchange="document.getElementById('themeForm').submit();" <?= (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? 'checked' : '' ?>>
-                    <span class="slider round"></span>
-                </label>
-            </form>
-            <a href="index.php?sort=name" class="sort-name">
-                <button>Sort by Name (A-Z)</button>
-            </a>
-            <a href="index.php?sort=price" class="sort-price">
-                <button>Sort by Price (Low-High)</button>
-            </a>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-sort"></i>
+                        Sort by
+                        <ul class="sort-dropdown">
+                            <li><a href="index.php?sort=name" class="sort-name">Sort by Name</a></li>
+                            <li><a href="index.php?sort=price" class="sort-price">Sort by Price</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
+        <div class="under-parent">
+            <p>Total Cards In Stock: <strong><?= $productsObj->countProducts(); ?></strong></p>
+        </div>
+        <div class="product-list">
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $index => $product): ?>
                     <div class="product" data-name="<?= strtolower($product['name']); ?>">
@@ -169,12 +175,12 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                         <?php if ($_SESSION['role'] === 'admin'): ?>
                             <div class="edit-button">
                                 <a href="edit.php?id=<?= $product['id']; ?>" class="edit-button">
-                                    <button>edit</button>
+                                    <i class="fa-solid fa-pen"></i>
                                 </a>
                             </div>
                             <div class="remove-button">
                                 <a class="remove-button" href="index.php?remove=<?= $product['id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
-                                    <button>remove</button>
+                                    <i class="fa-solid fa-trash"></i>
                                 </a>
                             </div>
                         <?php else: ?>
@@ -196,8 +202,33 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 </div>
 </body>
 <footer>
-    <h3>Proyek dibuat untuk UTS Pemrograman Web II</h3>
-    <p>Muhammad Suheil Ichma Putra_09021382328142</p>
+    <div class="footer-texts">
+        <h3>Proyek dibuat untuk UAS Pemrograman Web II</h3>
+        <p>Muhammad Suheil Ichma Putra_09021382328142</p>
+    </div>
+    <div class="social-media">
+        <ul>
+            <li>
+                <a href="https://instagram.com/suheilputraa">
+                    <i class="fa-brands fa-square-instagram"></i>
+                    <p>@suheilputraa</p>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/muhammadsuheilichmaputra/">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <p>Muhammad Suheil Ichma Putra</p>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/MuhammadSuheil">
+                    <i class="fa-brands fa-github"></i>
+                    <p>MuhammadSuheil</p>
+                </a>
+            </li>
+        </ul>
+    
+    </div>
 </footer>
 <script src="js/jQuery.js"></script>
 <script src="js/script.js"></script>
