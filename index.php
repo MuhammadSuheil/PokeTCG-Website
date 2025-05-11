@@ -55,35 +55,47 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/6ed949fe3b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="<?= $theme ?>">
 <div class="header-container">
-    <div class="title-count">
-        <h1>POKETCG</h1>
-        <p>#1 POKEMON TCG STORE</p>
-        <p>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
-        <a href="index.php?logout=true" class="logout-link">Logout</a>
+    <div class="title">
+        <div class="logo">
+            <img src="assets/logoPoke.png" alt="">
+        </div>
+        <div class="logo-text">
+            <h1>POKETCG</h1>
+            <p>#1 POKEMON TCG STORE</p>
+        </div>
     </p>
     </div>
-    <?php if ($_SESSION['role'] === 'admin'): ?>
-    <div class="form-tambah">
-        <form action="insert.php" method="POST" enctype="multipart/form-data">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Nama Produk" required>
-            <label>Description</label>
-            <input type="text" name="description" placeholder="Deskripsi" required>
-            <label>Price</label>
-            <input type="number" name="price" placeholder="Harga" required>
-            <label>Image</label>
-            <label for="file-upload" class="custom-file-upload">Upload</label>
-            <input type="file" name="imageFile" accept="image/*" placeholder="Image" id="file-upload" onchange="updateFileName(this)" required>
-            <button type="submit">Add Product</button>
-        </form>
+    <div class="right-header">
+        <p>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
+        <a href="index.php?logout=true" class="logout-link">Logout</a>
+        <?php if ($_SESSION['role'] === 'admin'): ?>
+        <div class="form-tambah">
+            <button id= "form-tambah">Add Product</button>
+        </div>
+        <div class="tambah-produk" id="tambah-produk">
+            <form action="insert.php" method="POST" enctype="multipart/form-data">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Nama Produk" required>
+                <label>Description</label>
+                <input type="text" name="description" placeholder="Deskripsi" required>
+                <label>Price</label>
+                <input type="number" name="price" placeholder="Harga" required>
+                <label>Image</label>
+                <label for="file-upload" class="custom-file-upload">Upload</label>
+                <input type="file" name="imageFile" accept="image/*" placeholder="Image" id="file-upload" onchange="updateFileName(this)" required>
+                <button type="submit">Add Product</button>
+            </form>
+            <button id= "form-close">Close</button>
+        </div>
+        <?php endif; ?>
     </div>
-    <?php endif; ?>
-
 </div>
+
 <script>
     function updateFileName(input) {
         if (input.files.length > 0) {
@@ -92,10 +104,46 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     }
 </script>
 
+<div class="hero">
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-item active">
+                <img src="assets/SurgingSpark.png" alt="Promo 1">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/darkFantom.jpg" alt="Promo 2">
+            </div>
+            <div class="carousel-item">
+                <img src="assets/PrismaticEvoBanner.jpg" alt="Promo 3">
+            </div>
+        </div>
+            <button class="carousel-prev">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="carousel-next">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+                
+            <div class="carousel-indicators">
+                <span class="indicator active" data-index="0"></span>
+                <span class="indicator" data-index="1"></span>
+                <span class="indicator" data-index="2"></span>
+            </div>
+    </div>
+</div>
 <div class="container-parent">
     <div class="under-parent">
         <p>Total Cards In Stock: <strong><?= $productsObj->countProducts(); ?></strong></p>
-        <div class="sort-button">
+    </div>
+    <div class="container">
+        <div class="product-list">
+            <div class="search-container">
+                <div class="search-icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <input type="input" id="search-item" placeholder="Cari barang">
+            </div>
+            <div class="sort-button">
             <form method="POST" id="themeForm">
                 <label class="switch">
                     <input type="checkbox" name="themeToggle" onchange="document.getElementById('themeForm').submit();" <?= (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? 'checked' : '' ?>>
@@ -109,15 +157,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                 <button>Sort by Price (Low-High)</button>
             </a>
         </div>
-    </div>
-    <div class="container">
-        <div class="search-container">
-            <div class="search-icon">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </div>
-            <input type="input" id="search-item" placeholder="Cari barang">
-        </div>
-        <div class="product-list">
+        
             <?php if (!empty($products)): ?>
                 <?php foreach ($products as $index => $product): ?>
                     <div class="product" data-name="<?= strtolower($product['name']); ?>">
@@ -160,4 +200,5 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <p>Muhammad Suheil Ichma Putra_09021382328142</p>
 </footer>
 <script src="js/jQuery.js"></script>
+<script src="js/script.js"></script>
 </html>
