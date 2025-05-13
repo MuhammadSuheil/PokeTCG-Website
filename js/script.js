@@ -2,13 +2,15 @@ const buttonOpen = document.getElementById("form-tambah");
 const buttonClose = document.getElementById("form-close");
 const form = document.getElementById("tambah-produk");
 
-buttonOpen.addEventListener("click", () => {
-    form.classList.add("open");
-})
+if (buttonOpen && buttonClose && form) {
+    buttonOpen.addEventListener("click", () => {
+        form.classList.add("open");
+    });
 
-buttonClose.addEventListener("click", () => {
-    form.classList.remove("open");
-})
+    buttonClose.addEventListener("click", () => {
+        form.classList.remove("open");
+    });
+}
 
 //carousel
 document.addEventListener('DOMContentLoaded', function() {
@@ -17,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const indicators = document.querySelectorAll('.indicator');
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
+
+    console.log("Carousel found:", carousel !== null);
+    console.log("Items count:", items.length);
+    console.log("Indicators count:", indicators.length);
     
     let currentIndex = 0;
     const totalItems = items.length;
