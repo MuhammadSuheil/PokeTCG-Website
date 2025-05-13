@@ -79,24 +79,24 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
         <p class="welcome">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
         <a href="index.php?logout=true" class="logout-link">Logout</a>
         <?php if ($_SESSION['role'] === 'admin'): ?>
-        <div class="form-tambah">
-            <button id= "form-tambah">Add Product</button>
-        </div>
-        <div class="tambah-produk" id="tambah-produk">
-            <form action="insert.php" method="POST" enctype="multipart/form-data">
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Nama Produk" required>
-                <label>Description</label>
-                <input type="text" name="description" placeholder="Deskripsi" required>
-                <label>Price</label>
-                <input type="number" name="price" placeholder="Harga" required>
-                <label>Image</label>
-                <label for="file-upload" class="custom-file-upload">Upload</label>
-                <input type="file" name="imageFile" accept="image/*" placeholder="Image" id="file-upload" onchange="updateFileName(this)" required>
-                <button type="submit">Add Product</button>
-            </form>
-            <button id= "form-close">Close</button>
-        </div>
+            <div class="form-tambah">
+                <button id= "form-tambah" onclick="toggleBlur()">Add Product</button>
+            </div>
+                <div class="tambah-produk" id="tambah-produk">
+                    <button id= "form-close"><i class="fa-solid fa-xmark"></i></button>
+                    <form action="insert.php" method="POST" enctype="multipart/form-data">
+                        <h2 id="header-form">Add Product</h2>
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Nama Produk" required>
+                        <label>Description</label>
+                        <input type="text" name="description" placeholder="Deskripsi" required>
+                        <label>Price</label>
+                        <input type="number" name="price" placeholder="Harga" required>
+                        <label>Image Upload</label>
+                        <input type="file" name="imageFile" accept="image/*" placeholder="Image" id="file-upload" onchange="updateFileName(this)" required>
+                        <button type="submit" id="add-product-button">Add Product</button>  
+                    </form>
+                </div>
         <?php endif; ?>
     </div>
 </div>

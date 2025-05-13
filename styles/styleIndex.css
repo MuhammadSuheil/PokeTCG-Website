@@ -29,7 +29,14 @@ ul{
 
 body,html {   
     background-color: var(--background);
+    transition: 0.5s;
   
+}
+
+#blur.active {
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
 }
 
 .header-container{
@@ -83,6 +90,63 @@ body,html {
     gap: 24px;
 
 }
+
+/* darkmode switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.slider:before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f185"; /* Sun icon */
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  color: #f39c12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.4s;
+  font-size: 12px;
+}
+
+input:checked + .slider {
+  background-color: var(--secondary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+  content: "\f186"; /* Moon icon */
+  color: #34495e;
+}
+/* darkmode switch */
+
 .form-tambah{
     display: flex;
     justify-content: center;
@@ -120,25 +184,72 @@ body,html {
 /* POPUP */
 /* POPUP */
 /* POPUP */
+
 .tambah-produk{
+    /* popup positioning */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: -1;
-    height: auto;
-    background-color: #ff0000;
+
+    /* popup styling */
+    width: 400px;
+    min-height: 500px;
+    background-color: var(--base-color);
+    color: var(--text);
+    border: solid 1px var(--border);
+    border-radius: 12px;
 
 }
 .tambah-produk form{
     display: flex;
     flex-direction: column;
-    width: 160px;
+    width: 250px;
+    gap: 8px;
+}
 
+.tambah-produk form input {
+    width: 250px;
+    height: 32px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: var(--background);
+    outline: none;
+    border: none;
+}
+
+#form-close{
+    font-size: 24px;
+    color: var(--text);
+    background-color: var(--base-color);
+    border: none;
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+
+}
+
+#add-product-button{
+    width: 250px;
+    height: 36px;
+    margin-top: 24px;
+    border: none;
+    border-radius: 30px;
+    background-color: var(--secondary-color);
+    color: var(--button-color);
+    font-weight: 600;
+}
+
+#header-form{
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .tambah-produk.open{
@@ -209,12 +320,12 @@ body,html {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: var(--secondary-color);
+    background-color: var(--base-color);
     cursor: pointer;
 }
 
 .indicator.active {
-    background-color: var(--base-color);
+    background-color: var(--secondary-color);
 }
 
 .carousel-prev, .carousel-next {
@@ -521,60 +632,6 @@ footer{
     text-decoration: none;
     color: white;
     gap: 8px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.slider:before {
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
-  content: "\f185"; /* Sun icon */
-  position: absolute;
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  color: #f39c12;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: 0.4s;
-  font-size: 12px;
-}
-
-input:checked + .slider {
-  background-color: var(--secondary-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-  content: "\f186"; /* Moon icon */
-  color: #34495e;
 }
 
 

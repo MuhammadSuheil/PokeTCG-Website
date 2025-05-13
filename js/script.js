@@ -106,3 +106,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+function toggleBlur(){
+    var blur = document.getElementById('blur');
+    if (blur) {
+        blur.classList.toggle('active');
+        console.log("blur aman bre")
+    }
+}
