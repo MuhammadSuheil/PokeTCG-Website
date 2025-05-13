@@ -114,3 +114,16 @@ function toggleBlur(){
         console.log("blur aman bre")
     }
 }
+
+const notification = document.querySelector('.notification');
+
+if (notification) {
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s ease';
+
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 3000);
+}

@@ -53,6 +53,8 @@ class Product{
 
             if ($stmt->execute()) {
                 echo "Produk berhasil ditambahkan!";
+                header("Location: index.php?added=true");
+                exit();
             } else {
                 echo "Error: " . $stmt->error;
             }

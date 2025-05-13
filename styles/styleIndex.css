@@ -13,7 +13,7 @@
     --background: #1a1b25;
     --text: #ffffff;
     --border: #5f5a6e;
-    --button-color: #07091a;
+    --button-color: #292a34;
 }
 
 *{
@@ -31,12 +31,6 @@ body,html {
     background-color: var(--background);
     transition: 0.5s;
   
-}
-
-#blur.active {
-    filter: blur(5px);
-    pointer-events: none;
-    user-select: none;
 }
 
 .header-container{
@@ -632,6 +626,29 @@ footer{
     text-decoration: none;
     color: white;
     gap: 8px;
+}
+
+.notification {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    transition: opacity 0.5s ease;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.notification.error {
+    background-color: #f44336;
+    color: white;
 }
 
 

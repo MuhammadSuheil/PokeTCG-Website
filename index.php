@@ -42,6 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 
+if (isset($_GET['added']) && $_GET['added'] === 'true') {
+    echo '<div class="notification success">Produk berhasil ditambahkan!</div>';
+    unset($_SESSION['product_added']);
+}
 ?>
 
 <!DOCTYPE html>
