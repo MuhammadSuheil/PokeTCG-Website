@@ -45,7 +45,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="<?= $theme ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +56,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
     <link rel="icon" href="assets/logoPoke.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/6ed949fe3b.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -69,7 +70,6 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
             <h1>POKETCG</h1>
             <p>#1 POKEMON TCG STORE</p>
         </div>
-    </p>
     </div>
     <div class="right-header">
         <form method="POST" id="themeForm">
@@ -78,7 +78,7 @@ $theme = isset($_COOKIE['theme']) ? $_COOKIE['theme'] : 'light';
                 <span class="slider round"></span>
             </label>
         </form>
-        <p>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
+        <p class="welcome">Welcome, <?= htmlspecialchars($_SESSION['username']); ?> |
         <a href="index.php?logout=true" class="logout-link">Logout</a>
         <?php if ($_SESSION['role'] === 'admin'): ?>
         <div class="form-tambah">

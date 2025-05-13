@@ -1,3 +1,21 @@
+:root{
+    --base-color: #fff;
+    --secondary-color: #ff8c00;
+    --background: #f5f1df;
+    --text: #07091a;
+    --border: #d4d4d4;
+    --button-color: #fff;
+}
+
+.dark{
+    --base-color: #292a34;
+    --secondary-color: #ff8c00;
+    --background: #1a1b25;
+    --text: #ffffff;
+    --border: #5f5a6e;
+    --button-color: #07091a;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -10,28 +28,18 @@ ul{
 }
 
 body,html {   
-    background-color: #e2d592;
+    background-color: var(--background);
   
-}
-
-body.light {
-    background-color: #fff;
-    color: #000;
-  }
-  
-body.dark {
-    background-color: #121212;
-    color: #fff;
 }
 
 .header-container{
     width: 100%;
     height: 80px;
-    background-color: #ffffff;
+    background-color: var(--base-color);
     display: flex; 
     justify-content: space-between;
     align-items: center;
-    border: solid 1px rgb(176, 176, 176);
+    border-bottom: solid 1px var(--border);
 }
 
 .title{
@@ -58,9 +66,16 @@ body.dark {
 
 .logo-text h1{
     line-height: 1.2;
-    color: #ff8c00;
+    color: var(--secondary-color);
 }
 
+.logo-text p{
+    color: var(--text);
+}
+
+.welcome{
+    color: var(--text);
+}
 .right-header{
     margin: 0 64px 0 0;
     display: flex;
@@ -71,15 +86,14 @@ body.dark {
 .form-tambah{
     display: flex;
     justify-content: center;
-    align-items: center;
-   
+    align-items: center;   
     
 }
 .form-tambah button{
     width: 120px;
     height: 40px;
-    background-color: #ff8c00;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--button-color);
     font-family: 'Poppins';
     font-weight: 600;
     border: none;
@@ -88,17 +102,17 @@ body.dark {
 }
 
 .form-tambah button:hover{
-    background-color: #dc0000
+    background-color: #bd5800
 }
 
 .right-header a, .right-header a:visited {
-    color: #ff8c00;
+    color: var(--secondary-color);
     font-weight: 600;
     text-decoration: none;
 }
 
 .right-header a:hover, .right-header a:hover {
-    color: #ff8c00;
+    color: var(--secondary-color);
     font-weight: 600;
     text-decoration: underline;
 }
@@ -146,7 +160,7 @@ body.dark {
     padding: 40px 0;
     background-image: url("../assets/pokemonPattern.png");
     object-fit: cover;
-    background-color: #f5f1df;
+    background-color: var(--background);
 }
 
 /* carousel */
@@ -156,7 +170,7 @@ body.dark {
     margin-bottom: 20px;
     overflow: hidden;
     border-radius: 15px;
-    border: 1px solid rgb(173, 173, 173);
+    border: 1px solid var(--border);
     
 }
 
@@ -188,25 +202,26 @@ body.dark {
     transform: translateX(-50%);
     display: flex;
     gap: 8px;
+
 }
 
 .indicator {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #ff8c00;
+    background-color: var(--secondary-color);
     cursor: pointer;
 }
 
 .indicator.active {
-    background-color: white;
+    background-color: var(--base-color);
 }
 
 .carousel-prev, .carousel-next {
     position: absolute;
     top: 50%;
-    background-color: #ff8c00;
-    color: #ffffff;
+    background-color: var(--secondary-color);
+    color: var(--base-color);
     border: none;
     border-radius: 50%;
     width: 35px;
@@ -230,9 +245,9 @@ body.dark {
 .container-parent{
     width: 100%;
     height: auto;
-    background-color: #ffffff;
+    background-color: var(--base-color);
     padding: 40px 80px;
-    border: 1px solid rgb(176, 176, 176);;
+    border-top: 1px solid var(--border);
 }
 
 .search-and-sort{
@@ -253,8 +268,8 @@ body.dark {
     width: 600px;
     height: 64px;
     padding: 12px 12px 12px 40px;
-    background-color: #ffffff;
-    border: solid 2px #c3c3c3;
+    background-color: var(--base-color);
+    border: solid 2px var(--border);
     border-radius: 50px;
     outline: none;
     font-family: 'Poppins';
@@ -266,9 +281,9 @@ body.dark {
     justify-content: center;
     width: 160px;
     height: 64px;
-    color: white;
+    color: var(--button-color);
     border-radius: 50px;
-    background-color: #ff8c00;
+    background-color: var(--secondary-color);
     gap: 20px;
 }
 .sort-button ul li {
@@ -277,7 +292,7 @@ body.dark {
     font-weight: 600;
     width: 160px;
     height: 64px;
-    background-color: #ff8c00;
+    background-color: var(--secondary-color);
     text-align: center;  line-height: 64px;
     border-radius: 50px; 
     
@@ -304,8 +319,8 @@ body.dark {
 }
 
 .sort-button ul li ul.sort-dropdown li a:hover {
-    background-color: #dc0000;
-    color: white;
+    background-color: #bd5800;
+    color: var(--text);
 }
 
 .sort-button ul li ul.sort-dropdown {
@@ -319,8 +334,8 @@ body.dark {
     left: 0; 
     top: 100%; 
     width: 100%; 
-    background-color: #ffffff; 
-    border: 1px solid #ccc;
+    background-color: var(--base-color); 
+    border: 1px solid var(--border);
     border-top: none; 
     border-radius: 0 0 8px 8px; 
 }
@@ -334,14 +349,14 @@ body.dark {
     padding: 12px 15px; 
     text-decoration: none;
     text-align: left; 
-    color: #333; 
-    background-color: #ffffff;
+    color: var(--text); 
+    background-color: var(--base-color);
     white-space: nowrap;
 }
 
 .sort-button ul li ul.sort-dropdown li a:hover {
-    background-color: #ff8c00;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--base-color);
 }
 
 .search-container .search-icon {
@@ -349,7 +364,7 @@ body.dark {
   top: 50%; 
   left: 15px; 
   transform: translateY(-50%);
-  color: #ababab;
+  color: var(--border);
 }
 
 
@@ -366,8 +381,8 @@ body.dark {
 .sort-name button, .sort-price button{
     width: 100px;
     height: 64px;
-    background-color: #ff8c00;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--base-color);
     border: none;
     border-radius: 50px;
     padding: 10px 20px;
@@ -379,20 +394,20 @@ body.dark {
 }
 
 .sort-name button:hover, .sort-price button:hover{
-    background-color: #dc0000;
+    background-color: #bd5800;
 } 
 
 .under-parent{
     margin: 48px;
     text-align: center;
-    color: #1a1a42;
+    color: var(--text);
 }
 
 .product{
     width: 320px;
     height: auto;
-    background-color: #fff;
-    border: #cecece solid 1px;
+    background-color: var(--base-color);
+    border: var(--border) solid 1px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -403,7 +418,7 @@ body.dark {
 }
 
 .product:hover{
-    border:#ff8c00 solid 1px;
+    border:var(--secondary-color) solid 1px;
 }
 
 .product img{
@@ -425,11 +440,14 @@ body.dark {
 
 .product h2{
     font-size: 20px;
-    color: #000000;
+    font-weight: 500;
+    color: var(--text);
 }
 
 .product p{
+    color: var(--text);
     font-size: 16px;
+    font-weight: 300;
 }
 
 .buttons{
@@ -441,7 +459,7 @@ body.dark {
      width: 30px;
      height: 30px;
      background-color: #e40000;
-     color: white;
+     color: var(--base-color);
      border-radius: 30px;
      display: flex;
      align-items: center;
@@ -452,7 +470,7 @@ body.dark {
      width: 30px;
      height: 30px;
      background-color: #008cff;
-     color: white;
+     color: var(--base-color);
      border-radius: 30px;
      display: flex;
      align-items: center;
@@ -463,7 +481,7 @@ footer{
     width: 100%;
     height: 250px;
     padding: 30px;
-    background-color: #444459;
+    background-color: #383855;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -471,7 +489,7 @@ footer{
 }
 
 .footer-texts{
-    color: #1a1829;
+    color: white;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -487,6 +505,61 @@ footer{
     color: white;
     gap: 8px;
 }
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.slider:before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f185"; /* Sun icon */
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  color: #f39c12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.4s;
+  font-size: 12px;
+}
+
+input:checked + .slider {
+  background-color: var(--secondary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+  content: "\f186"; /* Moon icon */
+  color: #34495e;
+}
+
 
 
 
