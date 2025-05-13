@@ -11,7 +11,6 @@ $db = new Database();
 $conn = $db->getConnection();
 
 require_once "../classes/User.php";
-
 $username = $password = "";
 $username_err = $password_err = $login_err = "";
 
@@ -30,14 +29,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($username_err) && empty($password_err)) {
         $user = new User($conn);
+        
 
         if ($user->login($username, $password)) {
             $_SESSION["username"] = $user->getUsername();
             $_SESSION["id"] = $user->getId();
+            $_SESSION["role"] = $user->getRole();
             
             header("location: ../index.php");
             exit();
-        } else {
+        } 
+        else {
             $login_err = "Invalid username or password.";
         }
     }
