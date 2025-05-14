@@ -2,6 +2,7 @@
     --base-color: #fff;
     --secondary-color: #ff8c00;
     --background: #f5f1df;
+    --background-input:#d4d4d4;
     --text: #07091a;
     --border: #d4d4d4;
     --button-color: #fff;
@@ -14,6 +15,7 @@
     --text: #ffffff;
     --border: #5f5a6e;
     --button-color: #292a34;
+    --background-input:#1a1b25;
 }
 
 *{
@@ -66,11 +68,13 @@ body,html {
 }
 
 .logo-text h1{
+    font-size: 25px;
     line-height: 1.2;
     color: var(--secondary-color);
 }
 
 .logo-text p{
+    font-size: 10px;
     color: var(--text);
 }
 
@@ -212,7 +216,8 @@ input:checked + .slider:before {
     height: 32px;
     padding: 10px;
     border-radius: 30px;
-    background-color: var(--background);
+    color: var(--text);
+    background-color: var(--background-input);
     outline: none;
     border: none;
 }
@@ -603,7 +608,7 @@ footer{
     width: 100%;
     height: 250px;
     padding: 30px;
-    background-color: #383855;
+    background-color: #1a1a1a;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -626,6 +631,10 @@ footer{
     text-decoration: none;
     color: white;
     gap: 8px;
+}
+
+.social-media ul li a:hover{
+    text-decoration: underline;
 }
 
 .notification {
@@ -651,7 +660,62 @@ footer{
     color: white;
 }
 
+/* Overlay for background when popup is active */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Darkened background */
+    z-index: 998; /* Just below the popup */
+    backdrop-filter: blur(3px); /* Blur effect (works in most modern browsers) */
+    -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
 
+/* Prevent scrolling when popup is open */
+.blur-background {
+    overflow: hidden;
+}
+
+/* Modify existing popup styles for better appearance */
+.tambah-produk {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    width: 400px;
+    min-height: 500px;
+    background-color: var(--base-color);
+    color: var(--text);
+    border: solid 1px var(--border);
+    border-radius: 12px;
+    transition: opacity 0.3s ease, z-index 0s linear 0.3s;
+}
+
+.tambah-produk.open {
+    opacity: 1;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+    animation: formAppear 0.3s forwards;
+}
+
+@keyframes formAppear {
+    from {
+        transform: translate(-50%, -48%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
 
 
 
