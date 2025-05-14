@@ -1,15 +1,72 @@
+// Get DOM elements
 const buttonOpen = document.getElementById("form-tambah");
 const buttonClose = document.getElementById("form-close");
 const form = document.getElementById("tambah-produk");
+let isFormOpen = false; // Track form state
 
+// Initialize event listeners
 if (buttonOpen && buttonClose && form) {
+    // Open form button
     buttonOpen.addEventListener("click", () => {
-        form.classList.add("open");
+        openForm();
     });
 
+    // Close form button
     buttonClose.addEventListener("click", () => {
-        form.classList.remove("open");
+        closeForm();
     });
+}
+
+// Function to open form with overlay
+function openForm() {
+    if (!isFormOpen) {
+        form.classList.add("open");
+        createOverlay();
+        isFormOpen = true;
+    }
+}
+
+// Function to close form and remove overlay
+function closeForm() {
+    if (isFormOpen) {
+        form.classList.remove("open");
+        removeOverlay();
+        isFormOpen = false;
+    }
+}
+
+// Function to create overlay
+function createOverlay() {
+    // Remove any existing overlay first to prevent duplicates
+    removeOverlay();
+    
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+    document.body.appendChild(overlay);
+    document.body.classList.add("blur-background");
+    
+    // Close form when clicking overlay
+    overlay.addEventListener("click", () => {
+        closeForm();
+    });
+}
+
+// Function to remove overlay
+function removeOverlay() {
+    const overlay = document.querySelector(".overlay");
+    if (overlay) {
+        overlay.remove();
+    }
+    document.body.classList.remove("blur-background");
+}
+
+// Toggle blur function for the Add Product button
+function toggleBlur() {
+    if (isFormOpen) {
+        closeForm();
+    } else {
+        openForm();
+    }
 }
 
 //carousel
@@ -20,9 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
 
-    console.log("Carousel found:", carousel !== null);
-    console.log("Items count:", items.length);
-    console.log("Indicators count:", indicators.length);
+    if (!carousel || items.length === 0) {
+        console.log("Carousel elements not found");
+        return;
+    }
     
     let currentIndex = 0;
     const totalItems = items.length;
@@ -42,16 +100,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Previous button click
-    prevBtn.addEventListener('click', function() {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
-        updateCarousel();
-    });
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalItems - 1;
+            updateCarousel();
+        });
+    }
     
     // Next button click
-    nextBtn.addEventListener('click', function() {
-        currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
-        updateCarousel();
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
+            updateCarousel();
+        });
+    }
     
     // Indicator clicks
     indicators.forEach(indicator => {
@@ -61,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Auto slide every 5 seconds
+    // Auto slide every 3 seconds
     let autoSlide = setInterval(function() {
         currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
         updateCarousel();
@@ -77,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         autoSlide = setInterval(function() {
             currentIndex = (currentIndex < totalItems - 1) ? currentIndex + 1 : 0;
             updateCarousel();
-        }, 5000);
+        }, 3000);
     });
     
     // Touch support for mobile
@@ -107,16 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function toggleBlur(){
-    var blur = document.getElementById('blur');
-    if (blur) {
-        blur.classList.toggle('active');
-        console.log("blur aman bre")
-    }
-}
-
+// Handle notifications
 const notification = document.querySelector('.notification');
-
 if (notification) {
     setTimeout(() => {
         notification.style.opacity = '0';

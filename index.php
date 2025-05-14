@@ -187,7 +187,7 @@ if (isset($_GET['added']) && $_GET['added'] === 'true') {
                             </div>
                         <?php else: ?>
                             <div class="buy-button">
-                                <a href="buy.php?id=<?= $product['id']; ?>">
+                                <a href="#">
                                     Buy
                                 </a>
                             </div>
