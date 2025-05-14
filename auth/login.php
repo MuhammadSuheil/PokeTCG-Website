@@ -58,18 +58,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header-container">
-        <div class="title-count">
-            <h1>POKETCG</h1>
-            <p>#1 POKEMON TCG STORE</p>
-        </div>
-    </div>
-    
     <div class="container">
+        <div class="title">
+            <div class="logo">
+                <img src="../assets/logoPoke.png" alt="">
+            </div>
+            <div class="logo-text">
+                <h1>POKETCG</h1>
+                <p>#1 POKEMON TCG STORE</p>
+            </div>
+        </div>
         <div class="register-form">
-            <h2>Login</h2>
-            <p>Please fill in your credentials to login.</p>
-
+            <div class="register-text">
+                <h2>Login</h2>
+                <p>Please fill in your credentials to login.</p>
+            </div>
             <?php 
             if (!empty($login_err)) {
                 echo '<div class="alert alert-danger">' . $login_err . '</div>';
@@ -81,18 +84,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Username</label>
                     <input type="text" name="username" value="<?php echo $username; ?>">
                     <span class="error"><?php echo $username_err; ?></span>
-                </div>    
-                <div class="form-group">
                     <label>Password</label>
                     <input type="password" name="password">
                     <span class="error"><?php echo $password_err; ?></span>
+                    <div class="form-button">
+                        <button type="submit">Login</button>
+                    </div>
                 </div>
-                <div class="form-button">
-                    <button type="submit">Login</button>
-                </div>
-                <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
             </form>
         </div>
+        <p>Don't have an account? <a id="direct-login" href="register.php">Sign up now</a>.</p>
     </div>
 </body>
 </html>
