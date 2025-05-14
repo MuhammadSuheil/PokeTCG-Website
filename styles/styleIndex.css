@@ -15,6 +15,7 @@
     --text: #ffffff;
     --border: #5f5a6e;
     --button-color: #292a34;
+    --background-input:#1a1b25;
 }
 
 *{
@@ -215,6 +216,7 @@ input:checked + .slider:before {
     height: 32px;
     padding: 10px;
     border-radius: 30px;
+    color: var(--text);
     background-color: var(--background-input);
     outline: none;
     border: none;
@@ -629,6 +631,10 @@ footer{
     text-decoration: none;
     color: white;
     gap: 8px;
+}
+
+.social-media ul li a:hover{
+    text-decoration: underline;
 }
 
 .notification {
